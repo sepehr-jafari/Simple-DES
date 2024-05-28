@@ -50,3 +50,6 @@ The bellow algorithm specifies how to compute the DES round keys K<sub>i</sub>, 
    (Use PC2 select 48 bits from the concatenation b<sub>1</sub>b<sub>2</sub> ... b<sub>56</sub>} of C<sub>i</sub> and D<sun>i</sub>; K<sub>i</sub> = b<sub>14</sub>b<sub>17</sub> ... b<sub>32</sub>. '←.' denotes left circular shift.)
   
 </div>
+
+## Implementing The DES Encryption
+
