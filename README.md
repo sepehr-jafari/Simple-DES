@@ -2,7 +2,7 @@
 Implementing DES algorithm encryption
 
 ## Implementing The Key Schedule module
-<div style="text-align: justify;">
+<div align="justify">
 The bellow algorithm specifies how to compute the DES round keys K<sub>i</sub>, each of which contains 48 bits of K. These operations make use of tables PC1 AND PC2, which are called permuted choice 1 and permuted choice 2. To begin, 8 bits of K are discarded (by PC1). the remaining 56 bits are permuted and assigned to two 28-bit variables C and D; and then for 16 iterations, both C and D are rotated either 1 or 2 bits, and 48 bits (K<sub>i</sub>) are selected from the concatenated result.
 </div>
 
@@ -34,7 +34,7 @@ The bellow algorithm specifies how to compute the DES round keys K<sub>i</sub>, 
 | 46 | 42 | 50 | 36 | 29 | 32 |
 
 </div>
-<div>
+<div align="justify">
 
 #### Algorithm DES key schedule
 
@@ -52,4 +52,10 @@ The bellow algorithm specifies how to compute the DES round keys K<sub>i</sub>, 
 </div>
 
 ## Implementing The DES Encryption
+
+<div align="justify">
+  DES is a Feistel cipher which processes plaintext blocks of n = 64 bits, producing 
+  64-bit ciphertext bolcks. The effective size of the secret key is k = 56 bits; more   precisely, the input key K is specified as a 64-bit key, 8 bits of which (bits 8,     16, ..., 64) may be used as parity bits. The 2<sup>56</sup> keys implement (at        most) 2<sup>56</sup> of the 2<sup>64</sup>! possible bijectin on 64-bit blocks.       widely held belief is that the parity bits were introduced to reduce the effective    key size from 64 to 56 bits, to intentionally reduce the cost of exhaustive key   
+  search by a factor of 256.
+</div>
 
