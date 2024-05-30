@@ -80,5 +80,56 @@ The bellow algorithm specifies how to compute the DES round keys K<sub>i</sub>, 
 </div>
 
 <div align="center">
-  <img src="" title="DES Feistel structure">
+  <img src="https://github.com/sepehr-jafari/Simple-DES/blob/main/img/Feistel.PNG" title="DES Feistel structure">
+  <p>DES Feistel structure</p>
 </div>
+
+<div>
+  
+   #### Algorithm Data Encryption Standard (DES)
+   INPUT: plaintext m<sub>1</sub> ...m<sub>64</sub>; 64-bit key K = k<sub>1</sub> ...k<sub>64</sub> (includes 8 parity bits).
+  OUTPUT: 64-bit ciphertext block C = c<sub>1</sub> ...c<sub>64</sub>.
+  1. (key schedule) Compute sixteen 48-bit round keys K<sub>i</sub> from K using previous algrorithm.
+  2. (L<sub>0</sub>, R<sub>0</sub>) ← IP(m<sub>1</sub>m<sub>2</sub> ...m<sub>64</sub>). (Use IP from bellow Tables to permute bits; split the
+  result into left and right 32-bit halves L<sub>0</sub> = m<sub>58</sub>m<sub>50</sub> ...m<sub>8</sub>, R<sub>0</sub> = m<sub>57</sub>m<sub>49</sub> ...m<sub>7</sub>.)
+  3. (16 rounds) for i from 1 to 16, compute L<sub>i</sub> and R<sub>i</sub> using previous Equations.
+  above, computing f(R<sub>i−1</sub>, K<sub>i</sub>) = P(S(E(R<sub>i−1</sub>) ⊕ K<sub>i</sub>)) as follows:
+  (a) Expand R<sub>i−1</sub> = r<sub>1</sub>r<sub>2</sub> ...r<sub>32</sub> from 32 to 48 bits using E in bellow tables:
+  T ← E(R<sub>i−1</sub>). (Thus T = r<sub>32</sub>r<sub>1</sub>r<sub>2</sub> ...r<sub>32</sub>r<sub>1</sub>.) <br>
+  (b) T'← T⊕K<sub>i</sub>. Represent T' as eight 6-bit character strings: (B<sub>1</sub>,... ,B<sub>8</sub>) =T'.<br>
+  (c) T'' ← (S<sub>1</sub>(B<sub>1</sub>), S<sub>2</sub>(B<sub>2</sub>),...S<sub>8</sub>(B<sub>8</sub>)). (Here S<sub>i</sub>(B<sub>i</sub>) maps B<sub>i</sub> = b<sub>1</sub>b<sub>2</sub> ...b<sub>6</sub> to the 4-bit entry in row r and column c of S-box Tables.)<br>
+  (d) T'''← P(T''). (UseP in bellow Table to permute the 32 bits of T''= t<sub>1</sub>t<sub>2</sub> ...t<sub>32</sub>, yielding t<sub>16</sub>t<sub>7</sub> ...t<sub>25</sub>.)
+  4. b<sub>1</sub>b<sub>2</sub> ...b<sub>64</sub> ← (R<sub>16</sub> L<sub>16</sub>). (Exchange final blocks L<sub>16</sub>, R<sub>16</sub>.)
+  5. C ← IP<sup>−1</sup>(b<sub>1</sub>b<sub>2</sub> ...b<sub>64</sub>). (Transpose using IP<sup>−1</sup> from bellow Table; C = b<sub>40</sub>b<sub>8</sub> ...b<sub>25</sub>.)
+</div>
+
+<table>
+<tr><th>IP </th><th>IP<sup>-1</sup></th></tr>
+<tr><td>
+
+|    |    |    |    |    |    |    |    |
+|----|----|----|----|----|----|----|----|
+| 58 | 50 | 42 | 34 | 26 | 18 | 10 | 2  |
+| 60 | 52 | 44 | 36 | 28 | 20 | 12 | 4  |
+| 62 | 54 | 46 | 38 | 30 | 22 | 14 | 6  |
+| 64 | 56 | 48 | 40 | 32 | 24 | 16 | 8  |
+| 57 | 49 | 41 | 33 | 25 | 17 | 9  | 1  |
+| 5  | 51 | 43 | 35 | 27 | 19 | 11 | 3  |
+| 61 | 53 | 45 | 37 | 29 | 21 | 13 | 5  |
+| 63 | 55 | 47 | 39 | 31 | 23 | 15 | 7  |
+
+</td><td>
+
+|    |    |    |    |    |    |    |    |
+|----|----|----|----|----|----|----|----|
+| 40 | 8  | 48 | 16 | 56 | 24 | 64 | 32 |
+| 39 | 7  | 47 | 15 | 55 | 23 | 63 | 31 |
+| 38 | 6  | 46 | 14 | 54 | 22 | 62 | 30 |
+| 37 | 5  | 45 | 13 | 53 | 21 | 61 | 29 |
+| 36 | 4  | 44 | 12 | 52 | 20 | 60 | 28 |
+| 35 | 3  | 43 | 11 | 51 | 19 | 59 | 27 |
+| 34 | 2  | 42 | 10 | 50 | 18 | 58 | 26 |
+| 33 | 1  | 41 | 9  | 49 | 17 | 57 | 25 |
+
+</td></tr> </table>
+
