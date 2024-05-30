@@ -78,3 +78,7 @@ The bellow algorithm specifies how to compute the DES round keys K<sub>i</sub>, 
   A simplified view is that the right half of each round (after expanding the 32-bit input to 8 characters of 6 bits each) carries out a key-dependent substitution on each of 8 charcters, then uses a fixed bit transposition to redistribute the bits of the resulting characters to produce 32 output bits.
   
 </div>
+
+<div align="center">
+  <img src="" title="DES Feistel structure">
+</div>
