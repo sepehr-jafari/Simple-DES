@@ -3,13 +3,13 @@ Implementing DES algorithm encryption
 
 ## Implementing The Key Schedule module
 <div align="justify">
-The bellow algorithm specifies how to compute the DES round keys K<sub>i</sub>, each of which contains 48 bits of K. These operations make use of tables PC1 AND PC2, which are called permuted choice 1 and permuted choice 2. To begin, 8 bits of K are discarded (by PC1). the remaining 56 bits are permuted and assigned to two 28-bit variables C and D; and then for 16 iterations, both C and D are rotated either 1 or 2 bits, and 48 bits (K<sub>i</sub>) are selected from the concatenated result.
+The below algorithm specifies how to compute the DES round keys K<sub>i</sub>, each of which contains 48 bits of K. These operations make use of tables PC1 AND PC2, which are called permuted choice 1 and permuted choice 2. To begin, 8 bits of K are discarded (by PC1). the remaining 56 bits are permuted and assigned to two 28-bit variables C and D; and then for 16 iterations, both C and D are rotated either 1 or 2 bits, and 48 bits (K<sub>i</sub>) are selected from the concatenated result.
 </div>
 
-<div>
-  
+<table>
+<tr><th>PC1 </th><th>PC2</th></tr>
+<tr><td>
 
-### PC1
 |    |    |    |    |    |    |    |
 |----|----|----|----|----|----|----|
 | 57 | 49 | 41 | 33 | 25 | 17 |  9 |
@@ -21,7 +21,8 @@ The bellow algorithm specifies how to compute the DES round keys K<sub>i</sub>, 
 | 14 |  6 | 61 | 53 | 45 | 37 | 29 |
 | 21 | 13 |  5 | 28 | 20 | 12 |  4 |
 
-### PC2
+</td><td>
+
 |    |    |    |    |    |    |
 |----|----|----|----|----|----|
 | 14 | 17 | 11 | 24 |  1 |  5 |
@@ -33,7 +34,9 @@ The bellow algorithm specifies how to compute the DES round keys K<sub>i</sub>, 
 | 44 | 49 | 39 | 56 | 34 | 53 |
 | 46 | 42 | 50 | 36 | 29 | 32 |
 
-</div>
+
+</td></tr> </table>
+
 <div align="justify">
 
 #### Algorithm DES key schedule
@@ -94,13 +97,13 @@ The bellow algorithm specifies how to compute the DES round keys K<sub>i</sub>, 
   result into left and right 32-bit halves L<sub>0</sub> = m<sub>58</sub>m<sub>50</sub> ...m<sub>8</sub>, R<sub>0</sub> = m<sub>57</sub>m<sub>49</sub> ...m<sub>7</sub>.)
   3. (16 rounds) for i from 1 to 16, compute L<sub>i</sub> and R<sub>i</sub> using previous Equations.
   above, computing f(R<sub>i−1</sub>, K<sub>i</sub>) = P(S(E(R<sub>i−1</sub>) ⊕ K<sub>i</sub>)) as follows:
-  (a) Expand R<sub>i−1</sub> = r<sub>1</sub>r<sub>2</sub> ...r<sub>32</sub> from 32 to 48 bits using E in bellow tables:
+  (a) Expand R<sub>i−1</sub> = r<sub>1</sub>r<sub>2</sub> ...r<sub>32</sub> from 32 to 48 bits using E in below tables:
   T ← E(R<sub>i−1</sub>). (Thus T = r<sub>32</sub>r<sub>1</sub>r<sub>2</sub> ...r<sub>32</sub>r<sub>1</sub>.) <br>
   (b) T'← T⊕K<sub>i</sub>. Represent T' as eight 6-bit character strings: (B<sub>1</sub>,... ,B<sub>8</sub>) =T'.<br>
   (c) T'' ← (S<sub>1</sub>(B<sub>1</sub>), S<sub>2</sub>(B<sub>2</sub>),...S<sub>8</sub>(B<sub>8</sub>)). (Here S<sub>i</sub>(B<sub>i</sub>) maps B<sub>i</sub> = b<sub>1</sub>b<sub>2</sub> ...b<sub>6</sub> to the 4-bit entry in row r and column c of S-box Tables.)<br>
-  (d) T'''← P(T''). (UseP in bellow Table to permute the 32 bits of T''= t<sub>1</sub>t<sub>2</sub> ...t<sub>32</sub>, yielding t<sub>16</sub>t<sub>7</sub> ...t<sub>25</sub>.)
+  (d) T'''← P(T''). (UseP in below Table to permute the 32 bits of T''= t<sub>1</sub>t<sub>2</sub> ...t<sub>32</sub>, yielding t<sub>16</sub>t<sub>7</sub> ...t<sub>25</sub>.)
   4. b<sub>1</sub>b<sub>2</sub> ...b<sub>64</sub> ← (R<sub>16</sub> L<sub>16</sub>). (Exchange final blocks L<sub>16</sub>, R<sub>16</sub>.)
-  5. C ← IP<sup>−1</sup>(b<sub>1</sub>b<sub>2</sub> ...b<sub>64</sub>). (Transpose using IP<sup>−1</sup> from bellow Table; C = b<sub>40</sub>b<sub>8</sub> ...b<sub>25</sub>.)
+  5. C ← IP<sup>−1</sup>(b<sub>1</sub>b<sub>2</sub> ...b<sub>64</sub>). (Transpose using IP<sup>−1</sup> from below Table; C = b<sub>40</sub>b<sub>8</sub> ...b<sub>25</sub>.)
 </div>
 
 <table>
@@ -167,6 +170,7 @@ The bellow algorithm specifies how to compute the DES round keys K<sub>i</sub>, 
   The below figure demonstrate the schema of round function in DES algorithm.
 </div>
 
-<div>
-  <img >
+<div align="center">
+  <img src="https://github.com/sepehr-jafari/Simple-DES/blob/main/img/One%20Round%20Of%20DES.PNG" width=500px hight=500px>
+  <p>Round Function OF DES</p>
 </div>
