@@ -59,3 +59,22 @@ The bellow algorithm specifies how to compute the DES round keys K<sub>i</sub>, 
   search by a factor of 256.
 </div>
 
+<div align="center">
+  <img src="https://github.com/sepehr-jafari/Simple-DES/blob/main/img/DES%20Big%20Picture.PNG?raw">
+</div>
+
+<div align="justify">
+  Encryption proceeds in 16 stages or rounds. From the input key K, sixteen 48-bit subkeys K<sub>i</sub> are generated, one for each round. Within each round, 8 fixed, carefully selected 6-to-4 bit substitution mapping (S-boxes) S<sub>i</sub>, collectively denoted S, are used. The 64-bit plaintext is divided into 32-bit havles L<sub>0</sub> and R<sub>0</sub>. Each round is functionally equivalent, taking 32-bit inputs L<sub>i-1</sub> and R<sub>i-1</sub> from the previous round and producing 32-bit outputs L<sub>i</sub> and R<sub>i</sub> for 1 ≤ i ≤ 16, as follows:
+</div>
+
+<div>
+  L<sub>i</sub> = R<sub>i−1</sub>; <br>
+  R<sub>i</sub> = L<sub>i−1</sub> ⊕ f(R<sub>i−1</sub>, K<sub>i</sub>), where         
+  f(R<sub>i−1</sub>, K<sub>i</sub>) = P(S(E(R<sub>i−1</sub>) ⊕ K<sub>i</sub>))
+</div>
+
+<div align="justify">
+  Here E is a fixed expansion permutation mapping R<sub>i-1</sub> from 32 to 48 bit (all bits are used once; some are used twice). P  is another fixed permutation on 32 bits. An initial bit permutation (IP) preceds the first round; following the last round, the left and right halves are exchanged and, finally, the resulting string is bit-permuted by the inverse of IP. Decrytion involves the same key and algorithm, but with subkeys applied to the internal rounds in the reverse order.<br>
+  A simplified view is that the right half of each round (after expanding the 32-bit input to 8 characters of 6 bits each) carries out a key-dependent substitution on each of 8 charcters, then uses a fixed bit transposition to redistribute the bits of the resulting characters to produce 32 output bits.
+  
+</div>
