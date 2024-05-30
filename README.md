@@ -90,7 +90,7 @@ The bellow algorithm specifies how to compute the DES round keys K<sub>i</sub>, 
    INPUT: plaintext m<sub>1</sub> ...m<sub>64</sub>; 64-bit key K = k<sub>1</sub> ...k<sub>64</sub> (includes 8 parity bits).
   OUTPUT: 64-bit ciphertext block C = c<sub>1</sub> ...c<sub>64</sub>.
   1. (key schedule) Compute sixteen 48-bit round keys K<sub>i</sub> from K using previous algrorithm.
-  2. (L<sub>0</sub>, R<sub>0</sub>) ← IP(m<sub>1</sub>m<sub>2</sub> ...m<sub>64</sub>). (Use IP from bellow Tables to permute bits; split the
+  2. (L<sub>0</sub>, R<sub>0</sub>) ← IP(m<sub>1</sub>m<sub>2</sub> ...m<sub>64</sub>). (Use IP from below Tables to permute bits; split the
   result into left and right 32-bit halves L<sub>0</sub> = m<sub>58</sub>m<sub>50</sub> ...m<sub>8</sub>, R<sub>0</sub> = m<sub>57</sub>m<sub>49</sub> ...m<sub>7</sub>.)
   3. (16 rounds) for i from 1 to 16, compute L<sub>i</sub> and R<sub>i</sub> using previous Equations.
   above, computing f(R<sub>i−1</sub>, K<sub>i</sub>) = P(S(E(R<sub>i−1</sub>) ⊕ K<sub>i</sub>)) as follows:
@@ -133,3 +133,40 @@ The bellow algorithm specifies how to compute the DES round keys K<sub>i</sub>, 
 
 </td></tr> </table>
 
+<table>
+<tr><th>E </th><th>P</th></tr>
+<tr><td>
+
+|    |    |    |    |    |    | 
+|----|----|----|----|----|----|
+| 32 | 1  | 2  | 3  | 4  | 5  |
+| 4  | 5  | 6  | 7  | 8  | 9  |
+| 8  | 9  | 10 | 11 | 12 | 13 |
+| 12 | 13 | 14 | 15 | 16 | 17 |
+| 16 | 17 | 18 | 19 | 20 | 21 |
+| 20 | 21 | 22 | 23 | 24 | 25 |
+| 24 | 25 | 26 | 27 | 28 | 29 |
+| 28 | 29 | 30 | 31 | 32 | 1  |
+
+</td><td>
+
+|    |    |    |    |
+|----|----|----|----|
+| 16 | 7  | 20 | 21 |
+| 29 | 12 | 28 | 17 |
+| 1  | 15 | 23 | 26 |
+| 5  | 18 | 31 | 10 |
+| 2  | 8  | 24 | 14 |
+| 32 | 27 | 3  | 9  |
+| 19 | 13 | 30 | 6  |
+| 22 | 11 | 4  | 25 |
+
+</td></tr> </table>
+
+<div>
+  The below figure demonstrate the schema of round function in DES algorithm.
+</div>
+
+<div>
+  <img >
+</div>
